@@ -1,26 +1,26 @@
 <h1>Eat-A-Burger App!</h1>
 
-<h2>Burgers that have yet to be eaten!</h2>
+<h2>Eaten Burgers:</h2>
 
 <ul>
-  {{#each burger}}
+  {{#each burgers}}
     {{#unless devoured}}
-      {{> burger/burger-block devoured=1}}
+      {{> burgers/burger-block}}
     {{/unless}}
   {{/each}}
 </ul>
 
-<h2>Burgers that were eaten!</h2>
+<h2>Ready to Eat Burgers!</h2>
 
 <ul>
-  {{#each burger}}
+  {{#each burgers}}
     {{#if devoured}}
-      {{> burger/burger-block devoured=0}}
+      {{> burgers/burger-block}}
     {{/if}}
   {{/each}}
 </ul>
 
-<h2>Add a Burger!</h2>
+<h2>Add a Burger</h2>
 <form class="create-form">
 
   <div class="form-group">
