@@ -1,38 +1,52 @@
-<h1>Eat-A-Burger App!</h1>
+<div class="container">
+	<div class="row">
+		<div class="column" id="top-bar">
+			<img src="/assets/img/burger.png" alt="burger"/>
+			<div class="column">
+			<h1> Eat-Da-Burger! </h1>
+		</div>
+		</div>
 
-<h2>UnEaten Burgers:</h2>
+		<div class="col-md-3 text-center" class="task">
+			<div class="row">
+			  {{#each burger_data}}
+			  	{{#unless this.devoured}}
+				<div style="text-align: center;" class="container"
+				<div class="row" style="display: inline-block">
+					<pre>{{this.id}}. {{this.burger_name}}
+					</pre>
+				</div>
+				  		<!-- {{this.Date}} -->
+				</div>
+				<div id="devouredBurgs" class="col-md-3 text-center">
+					<form class="devour-form button-size">
+						<input input type="hidden" class="burger_id" type="text" value={{this.id}}><br>
+						<button type="submit" class="btn btn-default">Devour it!</button>
+					</form>
+				</div>
+				{{/unless}}
+			  {{/each}}
+			</div>
+		</div>
+		<div class="col-md-6 text-center" class="task">
+			  {{#each burger_data}}
+			  	{{#if this.devoured}}
+			  		<input style="border: purple solid 2px; background-color: yellowgreen;" class="form-control" type="text" placeholder="{{this.id}} . {{this.burger_name}}" readonly>
+				{{/if}}
+			  {{/each}}
+		</div>
+	</div>
+</div>
 
-<ul>
-  {{#each burgers}}
-    {{#unless devoured}}
-      {{> burgers/burger-block devoured=0}}
-    {{/unless}}
-  {{/each}}
-</ul>
+<div class="container3">
+	<div class="row">
+		<div class="col-md-12 text-center enter_section">
+			<form action="/burgers/create" method="POST">
+				<input type="text" class="form-control" name="burger_name" value="" id="enter_text">
+				<button type="submit" class="btn btn-primary" id="text-enter-button">Submit</button>
+			</form>
+			<p style="text-decoration: underline;">Enter a burger you want to eat Click the "Submit" button.</p>
+		</div>
+	</div>
+</div>
 
-<h2>Devoured Burgers</h2>
-
-<ul>
-  {{#each burgers}}
-    {{#if devoured}}
-      {{> burgers/burger-block devoured=1}}
-    {{/if}}
-  {{/each}}
-</ul>
-
-<h2>Add a Burger</h2>
-<form class="create-form">
-
-  <div class="form-group">
-    <label for="ca">Burger Name:</label>
-    <input type="text" id="ca" name="name">
-  </div>
-
-  <div class="form-group">
-    <label for="sleepy">Devoured?</label><br>
-    <input type="radio" name="devoured" value="1" checked> Uneaten!<br>
-    <input type="radio" name="devoured" value="0"> Devoured!
-  </div>
-
-  <button type="submit">Add Burger</button>
-</form>
